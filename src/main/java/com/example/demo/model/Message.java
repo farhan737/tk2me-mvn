@@ -12,12 +12,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "messages")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message {
@@ -42,4 +44,18 @@ public class Message {
     private boolean read = false;
     
     private LocalDateTime sentAt = LocalDateTime.now();
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return id != null && id.equals(message.id);
+    }
+
+    @Override
+    public int hashCode() {
+        // Use only the ID for hashCode calculation to avoid circular references
+        return id != null ? id.hashCode() : 0;
+    }
 }
