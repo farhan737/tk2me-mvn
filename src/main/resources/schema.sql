@@ -1,9 +1,3 @@
--- Drop tables if they exist
-DROP TABLE IF EXISTS users_friends;
-DROP TABLE IF EXISTS messages;
-DROP TABLE IF EXISTS friend_requests;
-DROP TABLE IF EXISTS users;
-
 -- Create users table
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
